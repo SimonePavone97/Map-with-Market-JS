@@ -18,56 +18,56 @@ let locations = [
         "lat":45.48646,
         "long":9.20597,
         "src": 'img/Piazza.jpeg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
     {
         "id":2,
         "lat":45.52998,
         "long":9.36663,
         "src": 'img/Togliatti.jpg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
     {
         "id":3,
         "lat":45.48053,
         "long":9.18604,
         "src": 'img/Aprile.jpg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
     {
         "id":4,
         "lat":44.64785,
         "long":10.85484,
         "src": 'img/entrata.jpg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
     {
         "id":5,
         "lat":44.63461,
         "long":10.95522,
         "src": 'img/Emilia.jpg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
     {
         "id":6,
         "lat":41.1076,
         "long":16.87901,
         "src": 'img/Orabona.jpg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
     {
         "id":7,
         "lat":41.127,
         "long":16.87196,
         "src": 'img/ferrarese.jpg',
-        /*"title":,
-        "url":,*/
+        "adress": 'Piazza  Luigi  di  Savoia - Milano',
+        /*"url":,*/
     },
 ]
 
@@ -78,7 +78,7 @@ let popupOptions = {
 locations.forEach(element => {
     new L.Marker([element.lat,element.long]).addTo(map)
     .on("mouseover", event => {
-        event.target.bindPopup('<div class="card"><img src="'+element.src+'" width="80" height="80" alt"place"></div>', popupOptions).openPopup();
+        event.target.bindPopup('<div class="card"><img src="'+element.src+'" width="80" height="80" alt"place"><h2>'+element.adress+'</h2></div>', popupOptions).openPopup();
     })
     .on("mouseout", event => {
         event.target.closePopup();
