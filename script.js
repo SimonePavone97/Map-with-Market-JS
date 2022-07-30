@@ -14,7 +14,7 @@ let locations = [
     {
         "id":1,
         "lat":45.48646,
-        "long":9.20597,
+        "lng":9.20597,
         "src": 'img/Piazza.jpeg',
         "adress": 'Piazza  Luigi  di  Savoia I - Milano',
         "url":'https://goo.gl/maps/PcJ6BUSdZQsdQQF87',
@@ -22,7 +22,7 @@ let locations = [
     {
         "id":2,
         "lat":45.52998,
-        "long":9.36663,
+        "lng":9.36663,
         "src": 'img/Togliatti.jpg',
         "adress": 'Via Togliatti, 2 - Milano',
         "url":'https://goo.gl/maps/QNPUT7LWx9YtQWjL6',
@@ -30,7 +30,7 @@ let locations = [
     {
         "id":3,
         "lat":45.48053,
-        "long":9.18604,
+        "lng":9.18604,
         "src": 'img/Aprile.jpg',
         "adress": 'Piazza Venticinque Aprile - Milano',
         "url":'https://goo.gl/maps/kFUi2yVqZSqFz9mq6',
@@ -38,7 +38,7 @@ let locations = [
     {
         "id":4,
         "lat":44.64785,
-        "long":10.85484,
+        "lng":10.85484,
         "src": 'img/entrata.jpg',
         "adress": 'Via Emilia Ovest 1480 - Modena',
         "url":'https://goo.gl/maps/RRZRJBcHJvKQ4gq46',
@@ -46,7 +46,7 @@ let locations = [
     {
         "id":5,
         "lat":44.63461,
-        "long":10.95522,
+        "lng":10.95522,
         "src": 'img/Emilia.jpg',
         "adress": 'Via Emilia Est 981 - Modena',
         "url":'https://goo.gl/maps/8AsMwNdo7uSCjeJN9',
@@ -54,7 +54,7 @@ let locations = [
     {
         "id":6,
         "lat":41.1076,
-        "long":16.87901,
+        "lng":16.87901,
         "src": 'img/Orabona.jpg',
         "adress": 'Via Orabona 4 - Bari',
         "url":'https://goo.gl/maps/PH1QhwX1kqynKaxp6',
@@ -62,14 +62,14 @@ let locations = [
     {
         "id":7,
         "lat":41.127,
-        "long":16.87196,
+        "lng":16.87196,
         "src": 'img/ferrarese.jpg',
         "adress": 'Piazza Ferrarese 28 - Bari',
         "url":'https://goo.gl/maps/mQKFreeBRWihQRFt8',
     },
 ]
 
-let popupOptions = {
+/*/let popupOptions = {
     "closeButton" : false
 }
 
@@ -80,8 +80,32 @@ locations.forEach(element => {
     })
     /*.on("mouseout", event => {
         event.target.closePopup();
-    })*/
+    })
     .on("click", () =>{
         window.open(element.url);
     })
+});*/
+
+var markerClusters = L.markerClusterGroup();
+
+var myIcon = L.icon({
+  iconUrl: 'img/pin24.png',
+  iconRetinaUrl: 'img/pim48.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
 });
+ 
+for ( var i = 0; i < locations.length; ++i )
+{
+  var popup = locations[i].adress +
+              '<br/>' + locations[i].adress +
+              '<br/><b>Timezone:</b> ' + locations[i].url;
+ 
+  var m = L.marker( [locations[i].lat, locations[i].lng], {icon: myIcon} )
+                  .bindPopup( popup );
+ 
+  markerClusters.addLayer( m );
+}
+ 
+map.addLayer( markerClusters );
