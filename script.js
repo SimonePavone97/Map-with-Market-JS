@@ -61,46 +61,26 @@ let locations = [
     },
     {
         "id":7,
-        "lat":41.127,
-        "lng":16.87196,
+        "lat":41.12695,
+        "lng":16.87187,
         "src": 'img/ferrarese.jpg',
         "adress": 'Piazza Ferrarese 28 - Bari',
         "url":'https://goo.gl/maps/mQKFreeBRWihQRFt8',
     },
 ]
 
-/*/let popupOptions = {
-    "closeButton" : false
-}
 
-locations.forEach(element => {
-    new L.Marker([element.lat,element.long]).addTo(map)
-    .on("mouseover", event => {
-        event.target.bindPopup('<div class="card" style="width: 18rem;"><img src="'+element.src+'" class="card-img-top" alt"place"><h2 class="card-title">'+element.adress+'</h2><p> Portami qui: <a href="'+element.url+'">'+element.url+'</a> </p></div>', popupOptions).openPopup();
-    })
-    /*.on("mouseout", event => {
-        event.target.closePopup();
-    })
-    .on("click", () =>{
-        window.open(element.url);
-    })
-});*/
 
 var markerClusters = L.markerClusterGroup();
 
 var myIcon = L.icon({
   iconUrl: 'img/pin24.png',
-  iconRetinaUrl: 'img/pim48.png',
-  iconSize: [29, 24],
-  iconAnchor: [9, 21],
-  popupAnchor: [0, -14]
+  iconSize: [60, 42],
 });
  
 for ( var i = 0; i < locations.length; ++i )
 {
-  var popup = locations[i].adress +
-              '<br/>' + locations[i].adress +
-              '<br/><b>Timezone:</b> ' + locations[i].url;
+  var popup = ('<div class="card" style="width: 18rem;"><img src="'+locations[i].src+'" class="card-img-top" alt"place"><h2 class="card-title">'+locations[i].adress+'</h2><a href="' +locations[i].url+'" class=" white btn btn-primary">Portami qui</a></div>');
  
   var m = L.marker( [locations[i].lat, locations[i].lng], {icon: myIcon} )
                   .bindPopup( popup );
